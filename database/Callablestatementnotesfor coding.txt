@@ -1,0 +1,73 @@
+//Callable Statement
+//Stored procedure(IN, OUT, INOUT)
+
+mysql> use bsccsit;
+Database changed
+
+mysql> delimiter //
+mysql> CREATE Procedure showstudent(IN sid int)
+    -> BEGIN
+    -> select * from student where id=sid;
+    -> END
+    -> //
+Query OK, 0 rows affected (0.22 sec)
+
+mysql> delimiter ;
+mysql> call showstudent(2);
++----+-------+--------+---------+
+| id | sname | sphone | scity   |
++----+-------+--------+---------+
+|  2 | bhanu | 77878  | pokhara |
++----+-------+--------+---------+
+1 row in set (0.16 sec)
+
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> delimiter //
+mysql> CREATE Procedure Countstudentsfrompokhara(out c int)
+    -> BEGIN
+    -> SELECT count(*) into c from student where scity='pokhara';
+    -> END
+    -> //
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delimiter ;
+mysql> set @c=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call Countstudentsfrompokhara(@c);
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select @c;
++------+
+| @c   |
++------+
+| 3    |
++------+
+1 row in set (0.00 sec)
+
+
+mysql> delimiter //
+mysql> CREATE procedure addtional(INOUT c int)
+    -> BEGIN
+    -> SET c=c+100;
+    -> END
+    -> //
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> delimiter ;
+mysql> set@c=5;
+Query OK, 0 rows affected (0.00 sec)
+
+
+mysql> call addtional(@c);
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select @c;
++------+
+| @c   |
++------+
+| 105  |
++------+
+1 row in set (0.00 sec)
+

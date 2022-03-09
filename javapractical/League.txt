@@ -1,0 +1,7 @@
+1,rara,2004-02-03,nepal
+2,saarc,2004-02-03,india
+3,asia,2004-02-03,china
+4,premier,2004-02-03,spain
+5,champions,2004-02-03,france
+
+
